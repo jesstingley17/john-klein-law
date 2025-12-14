@@ -44,12 +44,29 @@ body {
     background-color: var(--white);
     line-height: 1.6;
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+/* Ensure all text elements inherit proper font */
+p, span, div, a, li, td, th, input, textarea, select, button, label {
+    font-family: var(--font-body);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--text-primary);
 }
 
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 var(--spacing-md);
+    width: 100%;
+    position: relative;
 }
 
 /* ============================================
@@ -84,11 +101,14 @@ body {
 }
 
 .nav-subtitle {
+    font-family: var(--font-body);
     font-size: 0.75rem;
     color: var(--text-secondary);
     text-transform: uppercase;
     letter-spacing: 0.1em;
     margin-top: -0.25rem;
+    font-weight: 400;
+    line-height: 1.4;
 }
 
 .nav-menu {
@@ -211,6 +231,7 @@ body {
 }
 
 .hero-subtitle {
+    font-family: var(--font-body);
     font-size: clamp(1rem, 2vw, 1.25rem);
     color: var(--text-secondary);
     font-weight: 300;
@@ -218,6 +239,7 @@ body {
     opacity: 0;
     animation: fadeInUp 0.8s ease-out 0.4s forwards;
     letter-spacing: 0.02em;
+    line-height: 1.6;
 }
 
 .hero-stats {
@@ -244,11 +266,13 @@ body {
 
 .stat-label {
     display: block;
+    font-family: var(--font-body);
     font-size: 0.75rem;
     color: var(--text-secondary);
     text-transform: uppercase;
     letter-spacing: 0.1em;
     margin-top: var(--spacing-xs);
+    font-weight: 400;
 }
 
 .btn-primary {
@@ -257,6 +281,7 @@ body {
     background: var(--black);
     color: var(--white);
     text-decoration: none;
+    font-family: var(--font-body);
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.1em;
@@ -267,6 +292,8 @@ body {
     overflow: hidden;
     opacity: 0;
     animation: fadeInUp 0.8s ease-out 0.8s forwards;
+    cursor: pointer;
+    line-height: 1.5;
 }
 
 .btn-primary::before {
@@ -298,10 +325,12 @@ body {
     flex-direction: column;
     align-items: center;
     gap: var(--spacing-xs);
+    font-family: var(--font-body);
     font-size: 0.75rem;
     text-transform: uppercase;
     letter-spacing: 0.1em;
     color: var(--text-secondary);
+    font-weight: 400;
 }
 
 .scroll-line {
@@ -332,6 +361,7 @@ section {
     color: var(--text-secondary);
     margin-bottom: var(--spacing-sm);
     letter-spacing: 0.2em;
+    font-weight: 400;
 }
 
 .section-title {
@@ -344,11 +374,13 @@ section {
 }
 
 .section-description {
+    font-family: var(--font-body);
     font-size: 1.125rem;
     color: var(--text-secondary);
     font-weight: 300;
     max-width: 600px;
     margin: 0 auto;
+    line-height: 1.6;
 }
 
 /* ============================================
@@ -374,10 +406,12 @@ section {
 }
 
 .about-text p {
+    font-family: var(--font-body);
     font-size: 1.125rem;
     line-height: 1.8;
     color: var(--text-secondary);
     margin-bottom: var(--spacing-md);
+    font-weight: 400;
 }
 
 .about-highlights {
@@ -415,9 +449,12 @@ section {
 }
 
 .highlight-item p {
+    font-family: var(--font-body);
     font-size: 0.9rem;
     color: var(--text-secondary);
     margin: 0;
+    font-weight: 400;
+    line-height: 1.6;
 }
 
 /* ============================================
@@ -488,10 +525,12 @@ section {
 }
 
 .practice-card > p {
+    font-family: var(--font-body);
     font-size: 1rem;
     line-height: 1.7;
     color: var(--text-secondary);
     margin-bottom: var(--spacing-md);
+    font-weight: 400;
 }
 
 .practice-services {
@@ -500,11 +539,14 @@ section {
 }
 
 .practice-services li {
+    font-family: var(--font-body);
     padding: var(--spacing-xs) 0;
     padding-left: var(--spacing-md);
     position: relative;
     font-size: 0.9rem;
     color: var(--text-secondary);
+    font-weight: 400;
+    line-height: 1.6;
 }
 
 .practice-services li::before {
@@ -623,16 +665,19 @@ section {
 }
 
 .rating-text {
+    font-family: var(--font-body);
     font-weight: 600;
     color: var(--black);
     font-size: 0.9rem;
 }
 
 .review-date {
+    font-family: var(--font-body);
     font-size: 0.875rem;
     color: var(--text-secondary);
     text-transform: uppercase;
     letter-spacing: 0.05em;
+    font-weight: 400;
 }
 
 .review-title {
@@ -644,11 +689,13 @@ section {
 }
 
 .review-text {
+    font-family: var(--font-body);
     font-size: 1.125rem;
     line-height: 1.8;
     color: var(--text-secondary);
     font-style: italic;
     margin-bottom: var(--spacing-md);
+    font-weight: 400;
 }
 
 .review-footer {
@@ -663,13 +710,17 @@ section {
 }
 
 .client-name {
+    font-family: var(--font-body);
     font-weight: 600;
     color: var(--black);
+    font-size: 1rem;
 }
 
 .client-verified {
+    font-family: var(--font-body);
     font-size: 0.875rem;
     color: var(--text-secondary);
+    font-weight: 400;
 }
 
 .reviews-stats {
@@ -702,10 +753,12 @@ section {
 }
 
 .stat-label {
+    font-family: var(--font-body);
     font-size: 0.875rem;
     color: var(--text-secondary);
     text-transform: uppercase;
     letter-spacing: 0.1em;
+    font-weight: 400;
 }
 
 /* ============================================
@@ -755,10 +808,13 @@ section {
 }
 
 .contact-item a {
+    font-family: var(--font-body);
     color: var(--text-secondary);
     text-decoration: none;
     transition: var(--transition);
     font-size: 1.125rem;
+    font-weight: 400;
+    line-height: 1.6;
 }
 
 .contact-item a:hover {
@@ -767,9 +823,12 @@ section {
 }
 
 .contact-item p {
+    font-family: var(--font-body);
     color: var(--text-secondary);
     line-height: 1.7;
     font-size: 1.125rem;
+    font-weight: 400;
+    margin: 0;
 }
 
 .contact-form-container {
@@ -915,6 +974,7 @@ section {
 }
 
 .practice-subtypes {
+    font-family: var(--font-body);
     font-size: 0.875rem;
     color: var(--text-secondary);
     font-weight: 300;
@@ -995,10 +1055,13 @@ section {
 }
 
 .footer-brand p {
+    font-family: var(--font-body);
     font-size: 0.875rem;
     color: rgba(255,255,255,0.7);
     text-transform: uppercase;
     letter-spacing: 0.1em;
+    font-weight: 400;
+    line-height: 1.6;
 }
 
 .footer-links {
@@ -1021,13 +1084,19 @@ section {
 
 .footer-column li {
     margin-bottom: var(--spacing-xs);
+    font-family: var(--font-body);
+    font-weight: 400;
+    line-height: 1.6;
 }
 
 .footer-column a {
+    font-family: var(--font-body);
     color: rgba(255,255,255,0.7);
     text-decoration: none;
     transition: var(--transition);
     font-size: 0.9rem;
+    font-weight: 400;
+    line-height: 1.6;
 }
 
 .footer-column a:hover {
@@ -1042,12 +1111,20 @@ section {
     color: rgba(255,255,255,0.7);
 }
 
+.footer-bottom p {
+    font-family: var(--font-body);
+    font-weight: 400;
+    margin: 0;
+    line-height: 1.6;
+}
+
 .footer-disclaimer {
     margin-top: var(--spacing-xs);
     font-size: 0.75rem;
 }
 
 .footer-credit {
+    font-family: var(--font-body);
     margin-top: var(--spacing-sm);
     font-size: 0.7rem;
     color: rgba(255,255,255,0.6);
@@ -1055,6 +1132,8 @@ section {
     letter-spacing: 0.05em;
     padding-top: var(--spacing-sm);
     border-top: 1px solid rgba(255,255,255,0.1);
+    font-weight: 400;
+    line-height: 1.6;
 }
 
 .footer-credit a {
