@@ -99,33 +99,96 @@ if (contactForm) {
     contactForm.addEventListener('submit', (e) => {
         e.preventDefault();
         
+        // Get all checked practice areas
+        const practiceAreas = Array.from(contactForm.querySelectorAll('input[name="practice-areas[]"]:checked'))
+            .map(checkbox => checkbox.value);
+        
+        // Validate that at least one practice area is selected
+        if (practiceAreas.length === 0) {
+            alert('Please select at least one practice area of interest.');
+            return;
+        }
+        
+        // Validate consent checkbox
+        const consent = contactForm.querySelector('input[name="consent"]');
+        if (!consent.checked) {
+            alert('Please acknowledge the attorney-client relationship disclaimer.');
+            return;
+        }
+        
         // Get form data
         const formData = new FormData(contactForm);
         const data = Object.fromEntries(formData);
         
         // Create mailto link (since we don't have a backend)
-        const subject = encodeURIComponent(`Contact Form: ${data.subject || 'General Inquiry'}`);
-        const body = encodeURIComponent(
-            `Name: ${data.name}\n` +
-            `Email: ${data.email}\n` +
-            `Phone: ${data.phone || 'Not provided'}\n\n` +
-            `Message:\n${data.message}`
-        );
+        const practiceAreasText = practiceAreas.join(', ');
+        const subject = encodeURIComponent(`Legal Consultation Request: ${practiceAreasText}`);
+        
+        let body = `CONTACT INFORMATION\n`;
+        body += `Name: ${data.name}\n`;
+        body += `Email: ${data.email}\n`;
+        body += `Phone: ${data.phone || 'Not provided'}\n\n`;
+        
+        body += `PRACTICE AREA(S) OF INTEREST\n`;
+        body += `${practiceAreasText}\n\n`;
+        
+        if (data.urgency) {
+            body += `URGENCY LEVEL\n`;
+            body += `${data.urgency}\n\n`;
+        }
+        
+        body += `MESSAGE\n`;
+        body += `${data.message}\n\n`;
+        
+        body += `---\n`;
+        body += `This message was sent from the contact form on the Jonathan W. Klein Law Firm website.`;
+        
+        const encodedBody = encodeURIComponent(body);
         
         // Open email client
-        window.location.href = `mailto:jwk283@aol.com?subject=${subject}&body=${body}`;
+        window.location.href = `mailto:jwk283@aol.com?subject=${subject}&body=${encodedBody}`;
         
         // Show success message
         const submitButton = contactForm.querySelector('button[type="submit"]');
         const originalText = submitButton.textContent;
-        submitButton.textContent = 'Message Sent!';
+        submitButton.textContent = 'Opening Email Client...';
         submitButton.style.background = '#4a4a4a';
+        submitButton.disabled = true;
         
         setTimeout(() => {
             submitButton.textContent = originalText;
             submitButton.style.background = '';
-            contactForm.reset();
-        }, 3000);
+            submitButton.disabled = false;
+            // Don't reset form immediately - let user see what was sent
+        }, 2000);
+    });
+    
+    // Add validation feedback for practice areas and visual feedback
+    const practiceCheckboxes = contactForm.querySelectorAll('input[name="practice-areas[]"]');
+    practiceCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', () => {
+            // Add/remove checked class for styling
+            const option = checkbox.closest('.practice-area-option');
+            if (checkbox.checked) {
+                option.classList.add('checked');
+            } else {
+                option.classList.remove('checked');
+            }
+            
+            const checkedCount = Array.from(practiceCheckboxes).filter(cb => cb.checked).length;
+            if (checkedCount > 0) {
+                // Remove any error styling
+                const practiceSelection = contactForm.querySelector('.practice-areas-selection');
+                if (practiceSelection) {
+                    practiceSelection.style.border = 'none';
+                }
+            }
+        });
+        
+        // Initialize checked state on page load
+        if (checkbox.checked) {
+            checkbox.closest('.practice-area-option').classList.add('checked');
+        }
     });
 }
 
@@ -164,5 +227,86 @@ window.addEventListener('scroll', updateActiveNav);
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
     updateActiveNav();
+});
+
+// ============================================
+// REVIEWS CAROUSEL - Fade In/Out
+// ============================================
+
+let currentReviewIndex = 0;
+let reviewInterval;
+const reviewTransitionTime = 5000; // 5 seconds
+
+function initReviewsCarousel() {
+    const reviewCards = document.querySelectorAll('.review-card');
+    const reviewIndicators = document.querySelectorAll('.review-indicator');
+    
+    if (reviewCards.length === 0) return;
+    
+    // Function to show a specific review
+    function showReview(index) {
+        // Remove active class from all reviews and indicators
+        reviewCards.forEach((card, i) => {
+            if (i === index) {
+                card.classList.add('active');
+            } else {
+                card.classList.remove('active');
+            }
+        });
+        
+        reviewIndicators.forEach((indicator, i) => {
+            if (i === index) {
+                indicator.classList.add('active');
+            } else {
+                indicator.classList.remove('active');
+            }
+        });
+        
+        currentReviewIndex = index;
+    }
+    
+    // Function to go to next review
+    function nextReview() {
+        const nextIndex = (currentReviewIndex + 1) % reviewCards.length;
+        showReview(nextIndex);
+    }
+    
+    // Add click handlers to indicators
+    reviewIndicators.forEach((indicator, index) => {
+        indicator.addEventListener('click', () => {
+            showReview(index);
+            // Reset auto-play timer
+            clearInterval(reviewInterval);
+            startAutoPlay();
+        });
+    });
+    
+    // Start auto-play
+    function startAutoPlay() {
+        reviewInterval = setInterval(() => {
+            nextReview();
+        }, reviewTransitionTime);
+    }
+    
+    // Pause on hover
+    const reviewsCarousel = document.querySelector('.reviews-carousel');
+    if (reviewsCarousel) {
+        reviewsCarousel.addEventListener('mouseenter', () => {
+            clearInterval(reviewInterval);
+        });
+        
+        reviewsCarousel.addEventListener('mouseleave', () => {
+            startAutoPlay();
+        });
+    }
+    
+    // Initialize with first review
+    showReview(0);
+    startAutoPlay();
+}
+
+// Initialize carousel when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+    initReviewsCarousel();
 });
 

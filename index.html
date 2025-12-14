@@ -199,22 +199,63 @@
                 <p class="section-description">What our clients say about their experience</p>
             </div>
             <div class="reviews-container">
-                <div class="review-card featured">
-                    <div class="review-header">
-                        <div class="review-rating">
-                            <span class="stars">★★★★★</span>
-                            <span class="rating-text">5.0 Rating</span>
+                <div class="reviews-carousel">
+                    <div class="review-card featured active">
+                        <div class="review-header">
+                            <div class="review-rating">
+                                <span class="stars">★★★★★</span>
+                                <span class="rating-text">5.0 Rating</span>
+                            </div>
+                            <div class="review-date">Avvo Review</div>
                         </div>
-                        <div class="review-date">Avvo Review</div>
-                    </div>
-                    <h3 class="review-title">Highly Recommended</h3>
-                    <p class="review-text">"Jonathan W. Klein provided exceptional legal representation. His expertise, professionalism, and dedication to my case were outstanding. I highly recommend his services to anyone in need of a skilled attorney."</p>
-                    <div class="review-footer">
-                        <div class="review-client">
-                            <span class="client-name">Client Review</span>
-                            <span class="client-verified">Verified Review</span>
+                        <h3 class="review-title">Highly Recommended</h3>
+                        <p class="review-text">"Jonathan W. Klein provided exceptional legal representation. His expertise, professionalism, and dedication to my case were outstanding. I highly recommend his services to anyone in need of a skilled attorney."</p>
+                        <div class="review-footer">
+                            <div class="review-client">
+                                <span class="client-name">Client Review</span>
+                                <span class="client-verified">Verified Review</span>
+                            </div>
                         </div>
                     </div>
+                    <div class="review-card featured">
+                        <div class="review-header">
+                            <div class="review-rating">
+                                <span class="stars">★★★★★</span>
+                                <span class="rating-text">5.0 Rating</span>
+                            </div>
+                            <div class="review-date">Client Testimonial</div>
+                        </div>
+                        <h3 class="review-title">Outstanding Service</h3>
+                        <p class="review-text">"Attorney Klein handled my case with the utmost professionalism and care. He was always available to answer my questions and kept me informed throughout the entire process. His knowledge and experience made all the difference."</p>
+                        <div class="review-footer">
+                            <div class="review-client">
+                                <span class="client-name">Satisfied Client</span>
+                                <span class="client-verified">Verified Review</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="review-card featured">
+                        <div class="review-header">
+                            <div class="review-rating">
+                                <span class="stars">★★★★★</span>
+                                <span class="rating-text">5.0 Rating</span>
+                            </div>
+                            <div class="review-date">Client Testimonial</div>
+                        </div>
+                        <h3 class="review-title">Expert Legal Counsel</h3>
+                        <p class="review-text">"I couldn't have asked for better representation. Jonathan Klein's attention to detail and strategic approach to my case resulted in the best possible outcome. He truly cares about his clients and fights for their rights."</p>
+                        <div class="review-footer">
+                            <div class="review-client">
+                                <span class="client-name">Grateful Client</span>
+                                <span class="client-verified">Verified Review</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="review-indicators">
+                    <button class="review-indicator active" data-review="0" aria-label="Review 1"></button>
+                    <button class="review-indicator" data-review="1" aria-label="Review 2"></button>
+                    <button class="review-indicator" data-review="2" aria-label="Review 3"></button>
                 </div>
                 <div class="reviews-stats">
                     <div class="stat-box">
@@ -282,31 +323,77 @@
                 <div class="contact-form-container">
                     <form class="contact-form" id="contactForm">
                         <div class="form-group">
-                            <label for="name">Name</label>
+                            <label for="name">Full Name *</label>
                             <input type="text" id="name" name="name" required>
                         </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" required>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">Email Address *</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" name="phone" placeholder="(614) 555-1234">
+                            </div>
                         </div>
                         <div class="form-group">
-                            <label for="phone">Phone</label>
-                            <input type="tel" id="phone" name="phone">
+                            <label>Practice Area(s) of Interest *</label>
+                            <div class="practice-areas-selection">
+                                <div class="practice-area-option">
+                                    <input type="checkbox" id="practice-criminal" name="practice-areas[]" value="Criminal Defense">
+                                    <label for="practice-criminal">
+                                        <strong>Criminal Defense</strong>
+                                        <span class="practice-subtypes">DUI/DWI, Felony & Misdemeanor, Traffic Violations, Drug Crimes, Assault & Battery</span>
+                                    </label>
+                                </div>
+                                <div class="practice-area-option">
+                                    <input type="checkbox" id="practice-family" name="practice-areas[]" value="Family Law">
+                                    <label for="practice-family">
+                                        <strong>Family Law</strong>
+                                        <span class="practice-subtypes">Divorce & Separation, Child Custody & Visitation, Child Support, Spousal Support, Adoption</span>
+                                    </label>
+                                </div>
+                                <div class="practice-area-option">
+                                    <input type="checkbox" id="practice-juvenile" name="practice-areas[]" value="Juvenile Law">
+                                    <label for="practice-juvenile">
+                                        <strong>Juvenile Law</strong>
+                                        <span class="practice-subtypes">Juvenile Delinquency, Status Offenses, Expungement, School Disciplinary Matters, Guardianship</span>
+                                    </label>
+                                </div>
+                                <div class="practice-area-option">
+                                    <input type="checkbox" id="practice-personal-injury" name="practice-areas[]" value="Personal Injury">
+                                    <label for="practice-personal-injury">
+                                        <strong>Personal Injury</strong>
+                                        <span class="practice-subtypes">Auto Accidents, Slip & Fall, Workplace Injuries, Medical Malpractice, Wrongful Death</span>
+                                    </label>
+                                </div>
+                                <div class="practice-area-option">
+                                    <input type="checkbox" id="practice-other" name="practice-areas[]" value="Other Legal Matter">
+                                    <label for="practice-other">
+                                        <strong>Other Legal Matter</strong>
+                                        <span class="practice-subtypes">Please describe in your message below</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <small class="form-hint">Select one or more practice areas that relate to your legal matter</small>
                         </div>
                         <div class="form-group">
-                            <label for="subject">Subject</label>
-                            <select id="subject" name="subject" required>
-                                <option value="">Select a practice area</option>
-                                <option value="criminal">Criminal Defense</option>
-                                <option value="family">Family Law</option>
-                                <option value="juvenile">Juvenile Law</option>
-                                <option value="personal-injury">Personal Injury</option>
-                                <option value="other">Other</option>
+                            <label for="urgency">Urgency Level</label>
+                            <select id="urgency" name="urgency">
+                                <option value="">Select urgency level</option>
+                                <option value="immediate">Immediate - Need response within 24 hours</option>
+                                <option value="urgent">Urgent - Need response within 2-3 days</option>
+                                <option value="normal">Normal - Response within a week is fine</option>
+                                <option value="inquiry">General Inquiry - No specific timeline</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" name="message" rows="5" required></textarea>
+                            <label for="message">Tell Us About Your Case *</label>
+                            <textarea id="message" name="message" rows="6" placeholder="Please provide details about your legal matter, including relevant dates, circumstances, and any questions you may have..." required></textarea>
+                        </div>
+                        <div class="form-group checkbox-group">
+                            <input type="checkbox" id="consent" name="consent" required>
+                            <label for="consent">I understand that submitting this form does not create an attorney-client relationship and that I should not send confidential information until such a relationship is established. *</label>
                         </div>
                         <button type="submit" class="btn-primary">Send Message</button>
                     </form>
