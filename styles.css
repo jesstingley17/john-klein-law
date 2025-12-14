@@ -1047,6 +1047,29 @@ section {
     font-size: 0.75rem;
 }
 
+.footer-credit {
+    margin-top: var(--spacing-sm);
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.6);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding-top: var(--spacing-sm);
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.footer-credit a {
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+    transition: var(--transition);
+    font-weight: 500;
+    border-bottom: 1px solid transparent;
+}
+
+.footer-credit a:hover {
+    color: var(--white);
+    border-bottom-color: rgba(255,255,255,0.5);
+}
+
 /* ============================================
    ANIMATIONS
    ============================================ */
